@@ -3,11 +3,11 @@ Fecha:4/03/2023
 Al presionar el pushbotton A, el display de 7 segmentos debe encender de manera ascendente y el B debe encender de manera descendente.
 
 int contador;  //Variable asociada al contador
-int presionado1; //Variable para el Ascendente del pulsador aumentar
-int presionado2; //Variable para el Descendente del pulsador disminuir
+int Boton1; //Variable para el Ascendente del pulsador aumentar
+int Boton2; //Variable para el Descendente del pulsador disminuir
 
-int pulsador_disminuir = 9; //Pulsador A
-int pulsador_aumentar = 10; //Pulsador B
+int Descender = 9; //Pulsador B
+int Ascender = 10; //Pulsador A
 
 void encender(int a, int b, int c, int d, int e, int f, int g)
 {
@@ -31,19 +31,19 @@ void setup() {
   pinMode(6, OUTPUT);
   pinMode(7, OUTPUT);
   pinMode(8, OUTPUT);
-  pinMode(9, INPUT);  //Pulsador Ascendente A
-  pinMode(10, INPUT);  //Pulsador Descendente B
+  pinMode(9, INPUT);  //Pulsador Ascendente B
+  pinMode(10, INPUT);  //Pulsador Descendente A
 }
 
 void loop() {
  //Condicionales para Descendente y uso del pulsador ascendente
-  if (digitalRead(pulsador_aumentar) == LOW)
+  if (digitalRead(Ascender) == LOW)
   {
-    presionado1 = 1;   //Variable del Descendente que cambia cuando se presiona el pulsador
+    Boton1 = 1;   //Variable del Descendente que cambia cuando se presiona el pulsador
   }
-  if (digitalRead(pulsador_aumentar) == HIGH && presionado1 == 1)
+  if (digitalRead(Ascender) == HIGH && Boton1 == 1)
   {
-    presionado1 = 0;  //Se reinicia la variable descendente
+    Boton1 = 0;  //Se reinicia la variable descendente
     contador++;       //Aascendente el contador
     if (contador > 9)
     {
@@ -51,13 +51,13 @@ void loop() {
     }
   }
   //Condicionales para antirrebote y uso del pulsador disminuir
-  if (digitalRead(pulsador_disminuir) == LOW)
+  if (digitalRead(Descender) == LOW)
   {
-    presionado2 = 1;    //Variable del antirrebote que cambia cuando se presiona el pulsador
+    Boton2 = 1;    //Variable del antirrebote que cambia cuando se presiona el pulsador
   }
-  if (digitalRead(pulsador_disminuir) == HIGH && presionado2 == 1)
+  if (digitalRead(Descender) == HIGH && Boton2 == 1)
   {
-    presionado2 = 0;   //Se reinicia la variable antirrebote
+    Boton2 = 0;   //Se reinicia la variable antirrebote
     contador--;        //Disminuye el contador
 
     if (contador < 0) //Si el contador esta en 0 y se disminuye, sigue mostrando el 0
